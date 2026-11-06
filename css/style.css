@@ -153,28 +153,20 @@ a {
     flex: 1;
     max-width: 560px;
     z-index: 2;
-}
 
-/* ===== Типографическая подпись ===== */
-.hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: 20px;
-}
-
-.hero-tag-line {
-    display: block;
-    width: 28px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--color-lime), transparent);
-    border-radius: 1px;
-    flex-shrink: 0;
+    /* ===== Glassmorphism-подложка ===== */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 44px 40px 40px;
+    border-radius: 20px;
+    background: rgba(10, 10, 22, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* ===== Заголовок ===== */
@@ -183,6 +175,7 @@ a {
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.02em;
+    margin-top: 8px;
     margin-bottom: 24px;
     white-space: nowrap;
 }
@@ -205,7 +198,7 @@ a {
 /* ===== Кнопка ===== */
 .btn {
     display: inline-block;
-    padding: 16px 40px;
+    padding: 16px 32px;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -213,6 +206,7 @@ a {
     border-radius: var(--radius);
     cursor: pointer;
     transition: all var(--transition);
+    width: fit-content;
 }
 
 .btn--primary {
@@ -239,10 +233,10 @@ a {
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* ===== Секция «Как это работает» ===== */
+/* ===== Секция «Как это работает» — Editorial Organic ===== */
 .how {
     padding: 120px 0;
-    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-graphite) 100%);
+    background: var(--color-bg);
 }
 
 .section-title {
@@ -253,71 +247,70 @@ a {
     letter-spacing: -0.01em;
 }
 
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-electric-blue), var(--color-lime));
-    margin: 16px auto 0;
-    border-radius: 2px;
-}
-
 .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
 
+/* --- Карточка — органичный контур, тёмная заливка, неоновое свечение --- */
 .step {
-    background: var(--color-bg-card);
-    border: 1px solid rgba(124, 58, 237, 0.15);
-    border-radius: var(--radius);
-    padding: 36px 28px;
-    transition: all var(--transition);
+    background: rgba(15, 15, 26, 0.95);
     position: relative;
-    overflow: hidden;
-}
+    overflow: visible;
+    min-height: 300px;
+    padding: 48px 28px 32px;
+    transition: border-color var(--transition);
 
-.step::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-purple), var(--color-electric-blue));
-    opacity: 0;
-    transition: opacity var(--transition);
+    /* Единая фиолетовая обводка + свечение */
+    border: 2px solid rgba(150, 98, 245, 0.85);
+    border-radius: 16px 24px 12px 20px;
+    box-shadow:
+        0 0 8px rgba(150, 98, 245, 0.30),
+        0 0 24px rgba(150, 98, 245, 0.15),
+        0 0 48px rgba(150, 98, 245, 0.08);
 }
-
 .step:hover {
-    border-color: rgba(124, 58, 237, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+    border-color: rgba(150, 98, 245, 1);
+    box-shadow:
+        0 0 12px rgba(150, 98, 245, 0.40),
+        0 0 32px rgba(150, 98, 245, 0.20),
+        0 0 64px rgba(150, 98, 245, 0.10);
 }
 
-.step:hover::before {
-    opacity: 1;
-}
-
+/* --- Номер — объёмный полупрозрачный Blob-стиль --- */
 .step-number {
     display: block;
-    font-size: 2.8rem;
+    font-size: 4.5rem;
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, var(--color-electric-blue), var(--color-purple));
+    letter-spacing: -0.04em;
+    user-select: none;
+
+    /* Насыщенный фиолетовый градиент — от яркого лилового к глубокому ультрамарину */
+    background:
+        radial-gradient(ellipse 110% 90% at 25% 20%, rgba(230, 210, 255, 0.40) 0%, transparent 50%),
+        linear-gradient(135deg, #b060ff 0%, #8b30e8 30%, #6d28d9 70%, #5b1fb8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    opacity: 0.7;
+
+    /* Объём: блик сверху-слева + тень снизу-справа (blur 1–2px — невидим как размытие) */
+    text-shadow:
+        -1px -1px 1px rgba(230, 210, 255, 0.25),
+         1px  1px 2px rgba(15, 5, 30,  0.30);
+
+    /* Мягкое внешнее свечение — подчёркивает форму, не размывает края */
+    filter: drop-shadow(0 0 3px rgba(139, 48, 232, 0.15));
+
+    margin-bottom: 12px;
 }
 
+/* --- Заголовок и описание --- */
 .step-title {
     font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: #fff;
 }
 
@@ -325,19 +318,6 @@ a {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     line-height: 1.6;
-}
-
-/* ===== Подвал ===== */
-.footer {
-    padding: 32px 0;
-    text-align: center;
-    border-top: 1px solid rgba(124, 58, 237, 0.1);
-    background: var(--color-graphite);
-}
-
-.footer-text {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
 }
 
 /* ===== Адаптивность ===== */
@@ -348,6 +328,10 @@ a {
 
     .steps {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .step-number {
+        font-size: 3.8rem;
     }
 }
 
@@ -384,10 +368,8 @@ a {
     .hero-content {
         max-width: 100%;
         text-align: center;
-    }
-
-    .hero-tag {
-        justify-content: center;
+        padding: 32px 24px 28px;
+        border-radius: 16px;
     }
 
     .hero-subtitle {
@@ -404,6 +386,27 @@ a {
     }
 
     .step {
-        padding: 28px 24px;
+        padding: 40px 24px 28px;
     }
+
+    .step-number {
+        font-size: 4rem;
+    }
+
+    .step-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* ===== Подвал ===== */
+.footer {
+    padding: 32px 0;
+    text-align: center;
+    border-top: 1px solid rgba(124, 58, 237, 0.1);
+    background: var(--color-graphite);
+}
+
+.footer-text {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
 }
