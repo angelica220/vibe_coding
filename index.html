@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Logo</a>
+            <nav class="nav" id="nav">
+                <a href="#hero">Главная</a>
+                <a href="#about">О нас</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <h1>Добро пожаловать</h1>
+                <p>Краткое описание вашего проекта или компании</p>
+                <a href="#about" class="btn">Узнать больше</a>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section class="section about" id="about">
+            <div class="container">
+                <h2>О нас</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Наши цели</h3>
+                        <p>Описание миссии и целей вашей компании</p>
+                    </div>
+                    <div class="card">
+                        <h3>Наш опыт</h3>
+                        <p>Информация о вашем опыте и достижениях</p>
+                    </div>
+                    <div class="card">
+                        <h3>Наша команда</h3>
+                        <p>Расскажите о специалистах вашей команды</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Услуги -->
+        <section class="section services" id="services">
+            <div class="container">
+                <h2>Услуги</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Услуга 1</h3>
+                        <p>Описание первой услуги</p>
+                    </div>
+                    <div class="card">
+                        <h3>Услуга 2</h3>
+                        <p>Описание второй услуги</p>
+                    </div>
+                    <div class="card">
+                        <h3>Услуга 3</h3>
+                        <p>Описание третьей услуги</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="section contact" id="contact">
+            <div class="container">
+                <h2>Контакты</h2>
+                <form class="form" id="contactForm">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Мой сайт. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
