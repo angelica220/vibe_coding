@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт</title>
+    <title>SOUND OF ME — Визуальная лаборатория</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <!-- Шапка -->
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">Logo</a>
+            <a href="#" class="logo">SOUND OF ME</a>
             <nav class="nav" id="nav">
                 <a href="#hero">Главная</a>
-                <a href="#about">О нас</a>
-                <a href="#services">Услуги</a>
-                <a href="#contact">Контакты</a>
+                <a href="#how">Как это работает</a>
             </nav>
             <button class="burger" id="burger" aria-label="Меню">
                 <span></span>
@@ -26,78 +25,65 @@
     </header>
 
     <main>
-        <!-- Герой-секция -->
+
+        <!-- Главный экран -->
         <section class="hero" id="hero">
+            <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
             <div class="container">
-                <h1>Добро пожаловать</h1>
-                <p>Краткое описание вашего проекта или компании</p>
-                <a href="#about" class="btn">Узнать больше</a>
+                <div class="hero-content">
+                    <span class="hero-tag">
+                        <span class="hero-tag-line"></span>
+                        визуальная лаборатория
+                    </span>
+                    <h1 class="hero-title">
+                        <span class="title-accent">SOUND</span> OF ME
+                    </h1>
+                    <p class="hero-subtitle">
+                        Интерактивная визуальная лаборатория. Преобразуйте своё эмоциональное состояние в&nbsp;уникальное абстрактное произведение.
+                    </p>
+                    <a href="#" class="btn btn--primary">Создать свою композицию</a>
+                </div>
             </div>
         </section>
 
-        <!-- О нас -->
-        <section class="section about" id="about">
+        <!-- Как это работает -->
+        <section class="how" id="how">
             <div class="container">
-                <h2>О нас</h2>
-                <div class="cards">
-                    <div class="card">
-                        <h3>Наши цели</h3>
-                        <p>Описание миссии и целей вашей компании</p>
+                <h2 class="section-title">Как это работает</h2>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">01</span>
+                        <h3 class="step-title">Выберите эмоции</h3>
+                        <p class="step-desc">Отметьте одно или несколько состояний, которые отражают ваш текущий настрой.</p>
                     </div>
-                    <div class="card">
-                        <h3>Наш опыт</h3>
-                        <p>Информация о вашем опыте и достижениях</p>
+                    <div class="step">
+                        <span class="step-number">02</span>
+                        <h3 class="step-title">Настройте палитру</h3>
+                        <p class="step-desc">Выберите оттенки и интенсивность цветов, которые резонируют с вашим опытом.</p>
                     </div>
-                    <div class="card">
-                        <h3>Наша команда</h3>
-                        <p>Расскажите о специалистах вашей команды</p>
+                    <div class="step">
+                        <span class="step-number">03</span>
+                        <h3 class="step-title">Создайте форму</h3>
+                        <p class="step-desc">Определите характер визуальных элементов — плавные, геометричные или хаотичные.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">04</span>
+                        <h3 class="step-title">Получите композицию</h3>
+                        <p class="step-desc">Система сгенерирует уникальную абстрактную визуализацию, отражающую ваше состояние.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Услуги -->
-        <section class="section services" id="services">
-            <div class="container">
-                <h2>Услуги</h2>
-                <div class="cards">
-                    <div class="card">
-                        <h3>Услуга 1</h3>
-                        <p>Описание первой услуги</p>
-                    </div>
-                    <div class="card">
-                        <h3>Услуга 2</h3>
-                        <p>Описание второй услуги</p>
-                    </div>
-                    <div class="card">
-                        <h3>Услуга 3</h3>
-                        <p>Описание третьей услуги</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Контакты -->
-        <section class="section contact" id="contact">
-            <div class="container">
-                <h2>Контакты</h2>
-                <form class="form" id="contactForm">
-                    <input type="text" name="name" placeholder="Ваше имя" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
-                    <button type="submit" class="btn">Отправить</button>
-                </form>
-            </div>
-        </section>
     </main>
 
     <!-- Подвал -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Мой сайт. Все права защищены.</p>
+            <p class="footer-text">&copy; 2026 SOUND OF ME. Визуальная лаборатория.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.recovered.js"></script>
 </body>
 </html>

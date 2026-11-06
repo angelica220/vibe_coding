@@ -8,17 +8,23 @@
 }
 
 :root {
-    --color-primary: #2563eb;
-    --color-primary-dark: #1d4ed8;
-    --color-text: #1e293b;
-    --color-text-light: #64748b;
-    --color-bg: #ffffff;
-    --color-bg-alt: #f8fafc;
-    --color-border: #e2e8f0;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --radius: 8px;
-    --transition: 0.3s ease;
+    /* Палитра Art Laboratory */
+    --color-graphite: #1a1a2e;
+    --color-graphite-light: #2d2d44;
+    --color-purple: #7c3aed;
+    --color-purple-glow: #a78bfa;
+    --color-electric-blue: #00d4ff;
+    --color-electric-blue-dim: #0ea5e9;
+    --color-lime: #a3e635;
+    --color-lime-dim: #84cc16;
+
+    --color-text: #e2e8f0;
+    --color-text-muted: #94a3b8;
+    --color-bg: #0f0f1a;
+    --color-bg-card: #16162a;
+
+    --radius: 6px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -30,26 +36,18 @@ body {
     color: var(--color-text);
     background: var(--color-bg);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1120px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-img {
-    max-width: 100%;
-    display: block;
 }
 
 /* ===== Шапка ===== */
@@ -58,8 +56,10 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    background: rgba(15, 15, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.15);
     z-index: 100;
 }
 
@@ -71,20 +71,47 @@ img {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--color-electric-blue), var(--color-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav {
+    display: flex;
+    gap: 32px;
 }
 
 .nav a {
-    margin-left: 24px;
+    font-size: 0.9rem;
     font-weight: 500;
-    color: var(--color-text-light);
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
     transition: color var(--transition);
+    position: relative;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-electric-blue);
+    transition: width var(--transition);
 }
 
 .nav a:hover {
-    color: var(--color-primary);
+    color: #fff;
+}
+
+.nav a:hover::after {
+    width: 100%;
 }
 
 /* Бургер-меню */
@@ -95,6 +122,7 @@ img {
     background: none;
     border: none;
     cursor: pointer;
+    padding: 4px;
 }
 
 .burger span {
@@ -105,124 +133,224 @@ img {
     transition: var(--transition);
 }
 
-/* ===== Герой-секция ===== */
+/* ===== Главный экран ===== */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding-top: 64px;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 16px;
+.hero .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
 }
 
-.hero p {
-    font-size: 1.25rem;
-    color: var(--color-text-light);
-    margin-bottom: 32px;
+.hero-content {
+    flex: 1;
+    max-width: 560px;
+    z-index: 2;
 }
 
-/* ===== Кнопки ===== */
+/* ===== Типографическая подпись ===== */
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.hero-tag-line {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-lime), transparent);
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+/* ===== Заголовок ===== */
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    white-space: nowrap;
+}
+
+.title-accent {
+    background: linear-gradient(135deg, var(--color-electric-blue), var(--color-lime));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 480px;
+}
+
+/* ===== Кнопка ===== */
 .btn {
     display: inline-block;
-    padding: 12px 32px;
-    background: var(--color-primary);
-    color: #fff;
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     border: none;
     border-radius: var(--radius);
-    font-size: 1rem;
-    font-weight: 600;
     cursor: pointer;
-    transition: background var(--transition);
+    transition: all var(--transition);
 }
 
-.btn:hover {
-    background: var(--color-primary-dark);
+.btn--primary {
+    background: linear-gradient(135deg, var(--color-purple), var(--color-electric-blue));
+    color: #fff;
+    box-shadow: 0 0 24px rgba(124, 58, 237, 0.35);
 }
 
-/* ===== Секции ===== */
-.section {
-    padding: 80px 0;
+.btn--primary:hover {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
 }
 
-.section:nth-child(even) {
-    background: var(--color-bg-alt);
+/* ===== Canvas: генеративный фон ===== */
+.hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
-.section h2 {
+/* ===== Секция «Как это работает» ===== */
+.how {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-graphite) 100%);
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 48px;
+    margin-bottom: 64px;
+    letter-spacing: -0.01em;
 }
 
-/* ===== Карточки ===== */
-.cards {
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-electric-blue), var(--color-lime));
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
+.steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
 
-.card {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
+.step {
+    background: var(--color-bg-card);
+    border: 1px solid rgba(124, 58, 237, 0.15);
     border-radius: var(--radius);
-    padding: 32px;
-    box-shadow: var(--shadow);
-    transition: box-shadow var(--transition), transform var(--transition);
+    padding: 36px 28px;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
-.card:hover {
-    box-shadow: var(--shadow-lg);
+.step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-purple), var(--color-electric-blue));
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.step:hover {
+    border-color: rgba(124, 58, 237, 0.4);
     transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
 }
 
-.card h3 {
-    font-size: 1.25rem;
+.step:hover::before {
+    opacity: 1;
+}
+
+.step-number {
+    display: block;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--color-electric-blue), var(--color-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.7;
+}
+
+.step-title {
+    font-size: 1.1rem;
+    font-weight: 700;
     margin-bottom: 12px;
+    color: #fff;
 }
 
-.card p {
-    color: var(--color-text-light);
-}
-
-/* ===== Форма ===== */
-.form {
-    max-width: 480px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.form input,
-.form textarea {
-    padding: 12px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    font-size: 1rem;
-    font-family: inherit;
-    transition: border-color var(--transition);
-}
-
-.form input:focus,
-.form textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
+.step-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
 }
 
 /* ===== Подвал ===== */
 .footer {
-    padding: 24px 0;
+    padding: 32px 0;
     text-align: center;
-    background: var(--color-text);
-    color: #fff;
+    border-top: 1px solid rgba(124, 58, 237, 0.1);
+    background: var(--color-graphite);
+}
+
+.footer-text {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
 }
 
 /* ===== Адаптивность ===== */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .burger {
         display: flex;
@@ -233,11 +361,13 @@ img {
         top: 64px;
         left: 0;
         width: 100%;
-        background: var(--color-bg);
+        background: rgba(15, 15, 26, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         flex-direction: column;
-        padding: 24px;
-        gap: 16px;
-        border-bottom: 1px solid var(--color-border);
+        padding: 32px 24px;
+        gap: 24px;
+        border-bottom: 1px solid rgba(124, 58, 237, 0.2);
         transform: translateY(-120%);
         transition: transform var(--transition);
     }
@@ -248,13 +378,32 @@ img {
 
     .nav a {
         margin-left: 0;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
         font-size: 1rem;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-tag {
+        justify-content: center;
+    }
+
+    .hero-subtitle {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        white-space: normal;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        padding: 28px 24px;
     }
 }
