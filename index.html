@@ -37,7 +37,7 @@
                     <p class="hero-subtitle">
                         Интерактивная визуальная лаборатория. Преобразуйте своё эмоциональное состояние в&nbsp;уникальное абстрактное произведение.
                     </p>
-                    <a href="#" class="btn btn--primary">Создать свою композицию</a>
+                    <a href="#" class="btn btn--primary" id="btnStartCreation">Создать свою композицию</a>
                 </div>
             </div>
         </section>
@@ -70,6 +70,222 @@
                 </div>
             </div>
         </section>
+
+        <!-- Область создания композиции -->
+        <div class="creator-area" id="creatorArea">
+            <button class="creator-close" id="creatorClose" aria-label="Закрыть">&times;</button>
+            <div class="creator-viewport">
+                <div class="creator-track" id="creatorTrack">
+
+                    <!-- Слайд 1: Выбор эмоций -->
+                    <div class="creator-slide" id="slide-emotions">
+                        <div class="container">
+                            <div class="scene-header">
+                                <span class="scene-step">Шаг 1 из 4</span>
+                                <div class="scene-progress">
+                                    <span class="scene-progress__fill" style="width: 25%"></span>
+                                </div>
+                                <h2 class="scene-title">Выберите, что вы сейчас чувствуете</h2>
+                                <p class="scene-hint">Можно выбрать несколько</p>
+                            </div>
+                            <div class="emotions-grid">
+                                <div class="emotions-col">
+                                    <div class="emotion-row" data-emotion="calm">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Спокойствие</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="anxiety">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Тревога</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="inspiration">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Вдохновение</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="joy">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Радость</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="ecstasy">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Восторг</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="curiosity">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Любопытство</span>
+                                    </div>
+                                </div>
+                                <div class="emotions-col">
+                                    <div class="emotion-row" data-emotion="sadness">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Грусть</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="anger">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Гнев</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="hope">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Надежда</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="doubt">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Сомнение</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="fatigue">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Усталость</span>
+                                    </div>
+                                    <div class="emotion-row" data-emotion="longing">
+                                        <span class="emotion-marker"></span>
+                                        <span class="emotion-label">Тоска</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="scene-footer">
+                                <button class="btn btn--primary btn--next" id="btnNextEmotion" disabled>Далее</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 2: Настройка палитры -->
+                    <div class="creator-slide" id="slide-palette">
+                        <div class="container">
+                            <div class="scene-header">
+                                <span class="scene-step">Шаг 2 из 4</span>
+                                <div class="scene-progress">
+                                    <span class="scene-progress__fill" style="width: 50%"></span>
+                                </div>
+                                <h2 class="scene-title">Выберите цветовое настроение</h2>
+                                <p class="scene-hint">Какими цветами вы хотите выразить своё состояние?</p>
+                            </div>
+                            <div class="palette-cards">
+                                <div class="palette-card" data-palette="cosmic">
+                                    <div class="palette-preview palette-preview--cosmic"></div>
+                                    <h3 class="palette-name">Космическое свечение</h3>
+                                    <p class="palette-desc">Глубокий фиолетовый, яркий циан, ультрамарин</p>
+                                </div>
+                                <div class="palette-card" data-palette="warm">
+                                    <div class="palette-preview palette-preview--warm"></div>
+                                    <h3 class="palette-name">Янтарная вспышка</h3>
+                                    <p class="palette-desc">Огненный оранжевый, тёплый розовый, золотой</p>
+                                </div>
+                                <div class="palette-card" data-palette="quiet">
+                                    <div class="palette-preview palette-preview--quiet"></div>
+                                    <h3 class="palette-name">Сапфировый импульс</h3>
+                                    <p class="palette-desc">Глубокий сапфир, ультрамарин, голубые акценты</p>
+                                </div>
+                                <div class="palette-card" data-palette="contrast">
+                                    <div class="palette-preview palette-preview--contrast"></div>
+                                    <h3 class="palette-name">Контраст чувств</h3>
+                                    <p class="palette-desc">Яркий лайм, неоновый розовый, тёмный фиолетовый</p>
+                                </div>
+                                <div class="palette-card" data-palette="lavender">
+                                    <div class="palette-preview palette-preview--lavender"></div>
+                                    <h3 class="palette-name">Лавандовый туман</h3>
+                                    <p class="palette-desc">Сиреневый, розовый, молочный</p>
+                                </div>
+                                <div class="palette-card" data-palette="emerald">
+                                    <div class="palette-preview palette-preview--emerald"></div>
+                                    <h3 class="palette-name">Изумрудный сон</h3>
+                                    <p class="palette-desc">Зелёный, бирюзовый, золотистый</p>
+                                </div>
+                                <div class="palette-card" data-palette="neon">
+                                    <div class="palette-preview palette-preview--neon"></div>
+                                    <h3 class="palette-name">Алый резонанс</h3>
+                                    <p class="palette-desc">Глубокий красный, бордо, кармин, малина</p>
+                                </div>
+                                <div class="palette-card" data-palette="mono">
+                                    <div class="palette-preview palette-preview--mono"></div>
+                                    <h3 class="palette-name">Монохромная тишина</h3>
+                                    <p class="palette-desc">Графитовый, серебристый, белый</p>
+                                </div>
+                            </div>
+                            <div class="scene-footer">
+                                <button class="btn btn--secondary btn--back" id="btnBackPalette">Назад</button>
+                                <button class="btn btn--primary btn--next" id="btnNextPalette" disabled>Далее</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 3: Выбор формы -->
+                    <div class="creator-slide" id="slide-shape">
+                        <div class="container">
+                            <div class="scene-header">
+                                <span class="scene-step">Шаг 3 из 4</span>
+                                <div class="scene-progress">
+                                    <span class="scene-progress__fill" style="width: 75%"></span>
+                                </div>
+                                <h2 class="scene-title">Выберите форму композиции</h2>
+                                <p class="scene-hint">Как ваше состояние могло бы выглядеть в абстрактном пространстве?</p>
+                            </div>
+                            <div class="shape-cards">
+                                <div class="shape-card" data-shape="organic">
+                                    <div class="shape-visual shape-visual--organic"></div>
+                                    <h3 class="shape-name">Органика</h3>
+                                    <p class="shape-desc">Плавные, мягкие, неправильные формы</p>
+                                </div>
+                                <div class="shape-card" data-shape="geometry">
+                                    <div class="shape-visual shape-visual--geometry"></div>
+                                    <h3 class="shape-name">Геометрия</h3>
+                                    <p class="shape-desc">Круги, треугольники, многоугольники</p>
+                                </div>
+                                <div class="shape-card" data-shape="flow">
+                                    <div class="shape-visual shape-visual--flow"></div>
+                                    <h3 class="shape-name">Поток</h3>
+                                    <p class="shape-desc">Текучие волны, ленты, переплетения</p>
+                                </div>
+                                <div class="shape-card" data-shape="particles">
+                                    <div class="shape-visual shape-visual--particles"></div>
+                                    <h3 class="shape-name">Частицы</h3>
+                                    <p class="shape-desc">Светящиеся точки, абстрактные скопления</p>
+                                </div>
+                                <div class="shape-card" data-shape="neural">
+                                    <div class="shape-visual shape-visual--neural"></div>
+                                    <h3 class="shape-name">Нейронные связи</h3>
+                                    <p class="shape-desc">Пересекающиеся линии, узлы, соединения</p>
+                                </div>
+                                <div class="shape-card" data-shape="layers">
+                                    <div class="shape-visual shape-visual--layers"></div>
+                                    <h3 class="shape-name">Многослойность</h3>
+                                    <p class="shape-desc">Полупрозрачные объекты, наслоения</p>
+                                </div>
+                            </div>
+                            <div class="scene-footer">
+                                <button class="btn btn--secondary btn--back" id="btnBackShape">Назад</button>
+                                <button class="btn btn--primary btn--next" id="btnNextShape" disabled>Далее</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Слайд 4: Результат -->
+                    <div class="creator-slide" id="slide-result">
+                        <div class="container">
+                            <div class="scene-header">
+                                <span class="scene-step">Шаг 4 из 4</span>
+                                <div class="scene-progress">
+                                    <span class="scene-progress__fill" style="width: 100%"></span>
+                                </div>
+                                <h2 class="scene-title">Твоё состояние в цвете и форме</h2>
+                                <p class="scene-hint">Каждое чувство оставляет свой визуальный след</p>
+                            </div>
+                            <div class="result-area">
+                                <canvas class="result-canvas" id="resultCanvas"></canvas>
+                                <div class="result-info">
+                                    <h3 class="result-title" id="resultTitle">Генерация...</h3>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="btn btn--secondary" id="btnSaveResult">Сохранить изображение</button>
+                                    <button class="btn btn--secondary" id="btnRegenerate">Создать заново</button>
+                                    <button class="btn btn--secondary" id="btnChangeSettings">Изменить настройки</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </main>
 

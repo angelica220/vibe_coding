@@ -410,3 +410,591 @@ a {
     font-size: 0.85rem;
     color: var(--color-text-muted);
 }
+
+/* ===== Горизонтальный слайдер создания ===== */
+.creator-area {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background: var(--color-bg);
+    overflow: hidden;
+}
+
+.creator-area.active {
+    display: block;
+}
+
+/* Кнопка закрытия */
+.creator-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: rgba(124, 58, 237, 0.2);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.creator-close:hover {
+    background: rgba(124, 58, 237, 0.4);
+    transform: scale(1.1);
+}
+
+/* Контейнер слайдера */
+.creator-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.creator-track {
+    display: flex;
+    width: 400%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.creator-slide {
+    width: 25%;
+    height: 100%;
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 80px 0 40px;
+}
+
+/* ===== Стили для слайда эмоций ===== */
+.scene-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.scene-step {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+}
+
+.scene-progress {
+    width: 120px;
+    height: 2px;
+    background: rgba(124, 58, 237, 0.12);
+    border-radius: 1px;
+    margin: 0 auto 24px;
+    overflow: hidden;
+}
+
+.scene-progress__fill {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(150, 98, 245, 0.8), rgba(167, 139, 250, 0.6));
+    border-radius: 1px;
+    box-shadow: 0 0 8px rgba(150, 98, 245, 0.3);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scene-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.scene-hint {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* Сетка эмоций */
+.emotions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 80px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.emotions-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Строка эмоции */
+.emotion-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.06);
+    user-select: none;
+}
+
+.emotion-row:first-child {
+    padding-top: 0;
+}
+
+.emotion-row:last-child {
+    border-bottom: none;
+}
+
+.emotion-row:hover {
+    background: rgba(124, 58, 237, 0.03);
+}
+
+.emotion-marker {
+    display: block;
+    width: 2px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: all var(--transition);
+    opacity: 0.6;
+}
+
+.emotion-row:hover .emotion-marker {
+    opacity: 1;
+}
+
+.emotion-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color var(--transition);
+}
+
+/* Выбранная эмоция */
+.emotion-row.active {
+    background: rgba(124, 58, 237, 0.04);
+}
+
+.emotion-row.active .emotion-marker {
+    height: 32px;
+    opacity: 1;
+    background: rgba(150, 98, 245, 1);
+    box-shadow: 0 0 10px rgba(150, 98, 245, 0.5), 0 0 24px rgba(150, 98, 245, 0.2);
+}
+
+.emotion-row.active .emotion-label {
+    color: rgba(150, 98, 245, 0.85);
+}
+
+/* Футер сцены */
+.scene-footer {
+    text-align: center;
+    margin-top: 48px;
+}
+
+.btn--next {
+    opacity: 0.4;
+    pointer-events: none;
+    transition: opacity var(--transition);
+}
+
+.btn--next:not([disabled]) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 1024px) {
+    .emotions-grid {
+        gap: 0 40px;
+    }
+
+    .scene-title {
+        font-size: 1.2rem;
+    }
+
+    .emotion-label {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .emotions-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .scene-title {
+        font-size: 1.1rem;
+    }
+
+    .emotion-label {
+        font-size: 1.1rem;
+    }
+
+    .emotion-row {
+        padding: 14px 0;
+    }
+}
+
+/* ===== Карточки палитры ===== */
+.palette-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.palette-card {
+    background: rgba(124, 58, 237, 0.04);
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all var(--transition);
+    user-select: none;
+}
+
+.palette-card:hover {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.25);
+    transform: translateY(-2px);
+}
+
+.palette-card.active {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(150, 98, 245, 0.5);
+    box-shadow: 0 0 24px rgba(150, 98, 245, 0.15);
+    transform: translateY(-2px);
+}
+
+.palette-preview {
+    width: 100%;
+    height: 64px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+}
+
+.palette-preview--cosmic {
+    background: linear-gradient(135deg, #8B35FF 0%, #A855F7 25%, #00F5E9 50%, #00B8FF 75%, #245BFF 100%);
+}
+
+.palette-preview--warm {
+    background: linear-gradient(135deg, #FF6A00 0%, #FF4500 20%, #FF1744 40%, #FF0080 60%, #E6005C 80%, #FFC400 100%);
+}
+
+.palette-preview--quiet {
+    background: linear-gradient(135deg, #001B55 0%, #003BCE 30%, #075BFF 55%, #00BFFF 80%, #B8F3FF 100%);
+}
+
+.palette-preview--contrast {
+    background: linear-gradient(135deg, #D7FF00 0%, #C6FF00 25%, #A8FF00 45%, #FF00C8 65%, #FF1493 85%, #F500FF 100%);
+}
+
+.palette-preview--emerald {
+    background: linear-gradient(135deg, #00E676 0%, #00FF66 25%, #00DFA2 45%, #00F5C4 65%, #00CFFF 85%, #FFD600 100%);
+}
+
+.palette-preview--lavender {
+    background: linear-gradient(135deg, #c084fc 0%, #f9a8d4 50%, #fef3c7 100%);
+}
+
+.palette-preview--neon {
+    background: linear-gradient(135deg, #8B0000 0%, #C00035 25%, #E60026 40%, #FF0033 55%, #FF1744 70%, #FF008C 85%, #D5006D 100%);
+}
+
+.palette-preview--mono {
+    background: linear-gradient(135deg, #374151 0%, #9ca3af 50%, #f9fafb 100%);
+}
+
+.palette-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.palette-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ===== Адаптивность палитры ===== */
+@media (max-width: 1024px) {
+    .palette-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .palette-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .palette-card {
+        padding: 16px;
+    }
+
+    .palette-preview {
+        height: 50px;
+    }
+
+    .palette-name {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== Карточки формы ===== */
+.shape-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.shape-card {
+    background: rgba(124, 58, 237, 0.04);
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all var(--transition);
+    user-select: none;
+    text-align: center;
+}
+
+.shape-card:hover {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.25);
+    transform: translateY(-2px);
+}
+
+.shape-card.active {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(150, 98, 245, 0.5);
+    box-shadow: 0 0 24px rgba(150, 98, 245, 0.15);
+    transform: translateY(-2px);
+}
+
+.shape-visual {
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Органика — мягкие blob-формы */
+.shape-visual--organic {
+    background: radial-gradient(ellipse at 30% 40%, rgba(168, 85, 247, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(0, 220, 236, 0.5) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 50%, rgba(37, 99, 235, 0.4) 0%, transparent 55%);
+    filter: blur(6px);
+}
+
+/* Геометрия — чёткие фигуры */
+.shape-visual--geometry {
+    background:
+        /* Тонкий треугольник */
+        radial-gradient(circle at 25% 28%, transparent 22%, rgba(124, 58, 237, 0.25) 22%, rgba(124, 58, 237, 0.35) 24%, transparent 24%),
+        /* Тонкий квадрат */
+        linear-gradient(0deg, transparent 44%, rgba(0, 150, 255, 0.3) 44%, rgba(0, 150, 255, 0.3) 46%, transparent 46%),
+        linear-gradient(0deg, transparent 62%, rgba(0, 150, 255, 0.3) 62%, rgba(0, 150, 255, 0.3) 64%, transparent 64%),
+        linear-gradient(90deg, transparent 34%, rgba(0, 150, 255, 0.3) 34%, rgba(0, 150, 255, 0.3) 36%, transparent 36%),
+        linear-gradient(90deg, transparent 48%, rgba(0, 150, 255, 0.3) 48%, rgba(0, 150, 255, 0.3) 50%, transparent 50%),
+        /* Тонкий ромб */
+        radial-gradient(circle at 72% 52%, transparent 20%, rgba(255, 50, 120, 0.25) 20%, rgba(255, 50, 120, 0.35) 22%, transparent 22%),
+        /* Тонкий шестиугольник */
+        radial-gradient(circle at 50% 22%, transparent 16%, rgba(124, 58, 237, 0.2) 16%, rgba(124, 58, 237, 0.3) 18%, transparent 18%),
+        /* Тонкий круг */
+        radial-gradient(circle at 35% 72%, transparent 18%, rgba(0, 150, 255, 0.2) 18%, rgba(0, 150, 255, 0.3) 20%, transparent 20%),
+        /* Лёгкие линии-связи */
+        linear-gradient(38deg, transparent 49%, rgba(124, 58, 237, 0.08) 49%, rgba(124, 58, 237, 0.08) 50%, transparent 50%),
+        linear-gradient(-25deg, transparent 55%, rgba(0, 150, 255, 0.06) 55%, rgba(0, 150, 255, 0.06) 56%, transparent 56%),
+        /* Тёмный фон */
+        linear-gradient(135deg, #0a0a1a 0%, #1a1033 100%);
+    background-blend-mode: normal, normal, normal, normal, normal, normal, normal, normal, normal, normal, normal;
+}
+
+/* Поток — текучие линии */
+.shape-visual--flow {
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(168, 85, 247, 0.5) 0px,
+        rgba(168, 85, 247, 0.5) 8px,
+        transparent 8px,
+        transparent 16px
+    ),
+    repeating-linear-gradient(
+        -45deg,
+        rgba(0, 220, 236, 0.5) 0px,
+        rgba(0, 220, 236, 0.5) 8px,
+        transparent 8px,
+        transparent 16px
+    ),
+    linear-gradient(135deg, #1a1033 0%, #0d1b2a 100%);
+    background-blend-mode: overlay;
+}
+
+/* Частицы — светящиеся точки */
+.shape-visual--particles {
+    background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.9) 0%, transparent 3%),
+                radial-gradient(circle at 40% 70%, rgba(0, 220, 236, 0.9) 0%, transparent 2%),
+                radial-gradient(circle at 60% 20%, rgba(163, 230, 53, 0.9) 0%, transparent 2.5%),
+                radial-gradient(circle at 80% 60%, rgba(37, 99, 235, 0.9) 0%, transparent 2%),
+                radial-gradient(circle at 25% 80%, rgba(139, 92, 246, 0.9) 0%, transparent 1.5%),
+                radial-gradient(circle at 70% 40%, rgba(0, 220, 236, 0.9) 0%, transparent 2%),
+                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.9) 0%, transparent 2%),
+                radial-gradient(circle at 10% 50%, rgba(163, 230, 53, 0.9) 0%, transparent 1.5%),
+                radial-gradient(circle at 90% 30%, rgba(37, 99, 235, 0.9) 0%, transparent 2%),
+                radial-gradient(circle at 35% 15%, rgba(0, 220, 236, 0.9) 0%, transparent 1.5%),
+                radial-gradient(circle at 65% 85%, rgba(168, 85, 247, 0.9) 0%, transparent 2%),
+                radial-gradient(circle at 45% 45%, rgba(163, 230, 53, 0.9) 0%, transparent 1.5%),
+                linear-gradient(135deg, #1a1033 0%, #0d1b2a 100%);
+}
+
+/* Нейронные связи — линии и узлы */
+.shape-visual--neural {
+    background:
+        linear-gradient(30deg, rgba(168, 85, 247, 0.6) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 220, 236, 0.5) 1px, transparent 1px),
+        linear-gradient(150deg, rgba(37, 99, 235, 0.6) 1px, transparent 1px),
+        linear-gradient(210deg, rgba(168, 85, 247, 0.5) 1px, transparent 1px),
+        linear-gradient(270deg, rgba(0, 220, 236, 0.6) 1px, transparent 1px),
+        linear-gradient(330deg, rgba(37, 99, 235, 0.5) 1px, transparent 1px),
+        radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.9) 0%, transparent 4%),
+        radial-gradient(circle at 75% 75%, rgba(0, 220, 236, 0.9) 0%, transparent 4%),
+        radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.9) 0%, transparent 3%),
+        linear-gradient(135deg, #1a1033 0%, #0d1b2a 100%);
+    background-size: 40px 40px, 100% 100%, 50px 50px, 45px 45px, 100% 100%, 55px 55px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Многослойность — полупрозрачные круги */
+.shape-visual--layers {
+    background: radial-gradient(circle at 35% 40%, rgba(168, 85, 247, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 65% 60%, rgba(0, 220, 236, 0.35) 0%, transparent 35%),
+                radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.3) 0%, transparent 45%),
+                radial-gradient(circle at 40% 70%, rgba(163, 230, 53, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 70% 35%, rgba(139, 92, 246, 0.35) 0%, transparent 38%),
+                linear-gradient(135deg, #1a1033 0%, #0d1b2a 100%);
+}
+
+.shape-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.shape-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ===== Адаптивность формы ===== */
+@media (max-width: 1024px) {
+    .shape-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .shape-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .shape-card {
+        padding: 16px;
+    }
+
+    .shape-visual {
+        height: 80px;
+    }
+
+    .shape-name {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== Экран результата ===== */
+.result-area {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.result-canvas {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    background: rgba(6, 6, 14, 0.9);
+    box-shadow:
+        0 0 20px rgba(150, 98, 245, 0.25),
+        0 0 60px rgba(150, 98, 245, 0.15),
+        0 0 100px rgba(150, 98, 245, 0.08),
+        0 0 160px rgba(150, 98, 245, 0.04),
+        0 8px 32px rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.result-info {
+    text-align: center;
+    margin-top: 28px;
+}
+
+.result-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0;
+    letter-spacing: 0.02em;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+}
+
+/* ===== Адаптивность результата ===== */
+@media (max-width: 768px) {
+    .result-canvas {
+        border-radius: 12px;
+    }
+
+    .result-title {
+        font-size: 1.2rem;
+    }
+
+    .result-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .result-actions .btn {
+        width: 100%;
+    }
+}
