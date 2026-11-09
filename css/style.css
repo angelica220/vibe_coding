@@ -150,15 +150,17 @@ a {
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 560px;
+    align-self: flex-start;
+    width: 820px;
+    max-width: calc(100vw - 48px);
+    box-sizing: border-box;
     z-index: 2;
 
     /* ===== Glassmorphism-подложка ===== */
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 44px 40px 40px;
+    padding: 44px 40px 40px 40px;
     border-radius: 20px;
     background: rgba(10, 10, 22, 0.6);
     backdrop-filter: blur(16px);
@@ -192,7 +194,6 @@ a {
     color: var(--color-text-muted);
     line-height: 1.7;
     margin-bottom: 40px;
-    max-width: 480px;
 }
 
 /* ===== Кнопка ===== */
@@ -886,14 +887,34 @@ a {
     background-size: 40px 40px, 100% 100%, 50px 50px, 45px 45px, 100% 100%, 55px 55px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
-/* Многослойность — полупрозрачные круги */
-.shape-visual--layers {
-    background: radial-gradient(circle at 35% 40%, rgba(168, 85, 247, 0.4) 0%, transparent 40%),
-                radial-gradient(circle at 65% 60%, rgba(0, 220, 236, 0.35) 0%, transparent 35%),
-                radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.3) 0%, transparent 45%),
-                radial-gradient(circle at 40% 70%, rgba(163, 230, 53, 0.3) 0%, transparent 30%),
-                radial-gradient(circle at 70% 35%, rgba(139, 92, 246, 0.35) 0%, transparent 38%),
-                linear-gradient(135deg, #1a1033 0%, #0d1b2a 100%);
+/* Симметрия — радиальный орнамент */
+.shape-visual--symmetry {
+    background:
+        /* центральное ядро */
+        radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.55) 0%, transparent 12%),
+        /* 4 оси симметрии — конические лучи */
+        conic-gradient(from 0deg at 50% 50%,
+            transparent 0deg, rgba(0, 229, 255, 0.2) 1.5deg, transparent 3deg,
+            transparent 90deg, rgba(0, 229, 255, 0.2) 91.5deg, transparent 93deg,
+            transparent 180deg, rgba(0, 229, 255, 0.2) 181.5deg, transparent 183deg,
+            transparent 270deg, rgba(0, 229, 255, 0.2) 271.5deg, transparent 273deg
+        ),
+        /* концентрические дуги */
+        radial-gradient(circle at 50% 50%, transparent 18%, rgba(37, 99, 235, 0.18) 19%, transparent 21%),
+        radial-gradient(circle at 50% 50%, transparent 33%, rgba(37, 99, 235, 0.14) 34%, transparent 36%),
+        radial-gradient(circle at 50% 50%, transparent 48%, rgba(168, 85, 247, 0.14) 49%, transparent 51%),
+        /* орнаментальные лепестки на осях */
+        radial-gradient(ellipse at 50% 30%, rgba(168, 85, 247, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 50%, rgba(0, 229, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(0, 229, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 70%, rgba(168, 85, 247, 0.35) 0%, transparent 50%),
+        /* точки на пересечениях */
+        radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.25) 0%, transparent 4%),
+        radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.25) 0%, transparent 4%),
+        radial-gradient(circle at 35% 65%, rgba(255, 255, 255, 0.25) 0%, transparent 4%),
+        radial-gradient(circle at 65% 65%, rgba(255, 255, 255, 0.25) 0%, transparent 4%),
+        /* фон */
+        linear-gradient(135deg, #1a1033 0%, #0d1b2a 100%);
 }
 
 .shape-name {

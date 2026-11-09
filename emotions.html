@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMOTIONS IN FORM — Выбор эмоций</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">EMOTIONS IN FORM</a>
+            <nav class="nav" id="nav">
+                <a href="index.html">Главная</a>
+            </nav>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Сцена: выбор эмоций -->
+    <section class="scene scene--emotions" id="sceneEmotions">
+        <div class="scene-bg">
+            <div class="scene-bg__blob scene-bg__blob--1"></div>
+            <div class="scene-bg__blob scene-bg__blob--2"></div>
+            <div class="scene-bg__blob scene-bg__blob--3"></div>
+        </div>
+        <div class="container">
+            <div class="scene-header">
+                <span class="scene-step">Шаг 1 из 4</span>
+                <div class="scene-progress">
+                    <span class="scene-progress__fill" style="width: 25%"></span>
+                </div>
+                <h2 class="scene-title">Выберите, что вы сейчас чувствуете</h2>
+                <p class="scene-hint">Можно выбрать несколько</p>
+            </div>
+            <div class="emotions-grid">
+                <div class="emotions-col">
+                    <div class="emotion-row" data-emotion="calm">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Спокойствие</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="anxiety">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Тревога</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="inspiration">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Вдохновение</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="joy">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Радость</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="ecstasy">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Восторг</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="curiosity">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Любопытство</span>
+                    </div>
+                </div>
+                <div class="emotions-col">
+                    <div class="emotion-row" data-emotion="sadness">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Грусть</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="anger">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Гнев</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="hope">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Надежда</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="doubt">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Сомнение</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="fatigue">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Усталость</span>
+                    </div>
+                    <div class="emotion-row" data-emotion="longing">
+                        <span class="emotion-marker"></span>
+                        <span class="emotion-label">Тоска</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scene-footer">
+                <button class="btn btn--primary btn--next" id="btnNext" disabled>Далее</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/emotions.js"></script>
+</body>
+</html>
